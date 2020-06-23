@@ -1,6 +1,5 @@
 import { html, LitElement, css } from 'lit-element';
 import '@polymer/paper-card/paper-card.js';
-import style from './morty-element-styles.js';
 
 class MortyElement extends LitElement {
   static get properties() {
@@ -13,12 +12,22 @@ class MortyElement extends LitElement {
 
   static get styles() {
     return css`
+    :host {
+      display: block;
+    }
       paper-card {
         margin: 8px 5px;
       }
       hr {
         height: 30px;
         background-color: blue;
+      }
+
+      .green {
+        color: green;
+      }
+      .red {
+        color: red;
       }
     `;
   }
@@ -34,7 +43,7 @@ class MortyElement extends LitElement {
     return html`
         <h1>morty</h1>
         <h4>${this.character}</h4>
-        ${this.personajes.map(personaje => html`<paper-card image="${personaje.image}" alt="Emmental">
+        ${this.personajes.map(personaje => html`<paper-card image="${personaje.image}" alt="Emmental" class="${personaje.status == 'Alive' ? 'green' : 'red'}">
                                                 <div class="card-content">
                                                   ${personaje.name}
                                                 </div>
